@@ -13,7 +13,13 @@ body {
 .wrapper {
   width: 100%;
   display: grid;
-  grid-template-columns: 4fr 8fr;
+  grid-template-columns: min(460px, calc(100vw - 460px)) 2fr;
+}
+
+@media (max-width: 960px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
 }
 
 button {

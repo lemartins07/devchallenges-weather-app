@@ -3,7 +3,6 @@ import cloudBackground from '../../assets/Cloud-background.png'
 
 export const Aside = styled.aside`
   background-color: #1e213a;
-  height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -24,20 +23,20 @@ export const WheaterData = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2rem;
-    height: 36%;
+    min-height: 376px;
   }
 
   .thumb::before {
+    content: '';
+    width: 100%;
+    height: 100%;
     background-image: url(${cloudBackground});
+    background-repeat: no-repeat;
     background-position: 50%;
     background-size: cover;
-    content: '';
+    background-position: top;
+
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
     opacity: 10%;
   }
 
