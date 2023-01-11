@@ -7,6 +7,8 @@ export const Aside = styled.aside`
   grid-template-columns: 1fr;
   gap: 1rem;
 
+  grid-row: 1/ 3;
+
   form {
     display: flex;
     justify-content: space-between;
