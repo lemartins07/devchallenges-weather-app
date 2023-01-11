@@ -6,14 +6,15 @@ import { Wrapper, Label, InputComponent } from './style'
 const Input = ({ type, label, name, value, onChange, error, onBlur }) => {
   return (
     <Wrapper>
-      <Label htmlFor={name}>{name}</Label>
+      <Label htmlFor={name}></Label>
       <InputComponent
         type={type}
         id={name}
         name={name}
         value={value}
         onChange={onChange}
-        onBluer={onBlur}
+        onBlur={onBlur}
+        placeholder="search locations"
       />
       {error && <p>{error}</p>}
     </Wrapper>
