@@ -1,5 +1,5 @@
 import React from 'react'
-import { MdClose } from 'react-icons/md'
+import { MdClose, MdChevronRight } from 'react-icons/md'
 
 import { Modal } from './style'
 import Input from '../Forms/Input/index'
@@ -25,9 +25,15 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
         <button className="btnSearch">Search</button>
       </form>
       <ul className="searchResults">
-        <li>London</li>
-        <li>Barcelona</li>
-        <li>Long Beach</li>
+        <li>
+          London <MdChevronRight />
+        </li>
+        <li>
+          Barcelona <MdChevronRight />
+        </li>
+        <li>
+          Long Beach <MdChevronRight />
+        </li>
       </ul>
     </Modal>
   )
