@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { MdSearch } from 'react-icons/md'
 
 import { Wrapper, Label, InputComponent } from './style'
 
-const Input = ({ type, label, name, value, onChange, error, onBlur }) => {
+const Input = ({ type, label, name, value, onChange, error, onBlur, icon }) => {
   return (
     <Wrapper>
-      <Label htmlFor={name}></Label>
+      {label && <Label htmlFor={name}>{name}</Label>}
+      <MdSearch />
       <InputComponent
         type={type}
         id={name}
@@ -23,7 +25,7 @@ const Input = ({ type, label, name, value, onChange, error, onBlur }) => {
 
 Input.defaultProps = {
   type: 'text',
-  label: '',
+  label: null,
 }
 
 Input.prototype = {
