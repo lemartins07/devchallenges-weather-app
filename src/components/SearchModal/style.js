@@ -15,6 +15,9 @@ export const Modal = styled.div`
     width: 100%;
   }
 
+  @media (max-width: 400px) {
+    padding: 1rem;
+  }
   .close {
     display: flex;
     justify-content: end;

@@ -8,6 +8,10 @@ export const Aside = styled.aside`
   gap: 1rem;
   align-content: start;
 
+  @media (max-width: 400px) {
+    height: 100vh;
+  }
+
   grid-row: 1/ 3;
 
   form {
@@ -27,6 +31,9 @@ export const WheaterData = styled.div`
     align-items: center;
     justify-content: center;
     min-height: 376px;
+    @media (max-width: 400px) {
+      min-height: initial;
+    }
   }
 
   .thumb::before {
@@ -48,6 +55,10 @@ export const WheaterData = styled.div`
     line-height: 10.5625rem;
     margin-bottom: 4rem;
 
+    @media (max-width: 400px) {
+      margin-bottom: 0;
+    }
+
     span {
       font-size: 3rem;
       line-height: 3.5rem;
@@ -62,6 +73,9 @@ export const WheaterData = styled.div`
     color: #a09fb1;
     margin-bottom: 4rem;
     text-transform: capitalize;
+    @media (max-width: 400px) {
+      margin-bottom: 1.5rem;
+    }
   }
 
   .date {
@@ -70,6 +84,9 @@ export const WheaterData = styled.div`
     line-height: 1.3125rem;
     color: #a09fb1;
     margin-bottom: 4rem;
+    @media (max-width: 400px) {
+      margin-bottom: 1.5rem;
+    }
   }
 
   .place {
