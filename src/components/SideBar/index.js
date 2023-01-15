@@ -14,11 +14,8 @@ import ImgWheater from '../ImgWheater/index'
 
 const SideBar = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
-  const { data, loading, error } = useContext(GlobalContext)
-
-  function handleClick(event) {
-    event.preventDefault()
-  }
+  const { data, loading, error, dateHelper } = useContext(GlobalContext)
+  const { today, weekDay, month } = dateHelper()
 
   if (error)
     return (
@@ -42,7 +39,7 @@ const SideBar = () => {
             modalIsOpen={modalIsOpen}
             setModalIsOpen={setModalIsOpen}
           />
-          <LocalizationButton handleClick={handleClick} />
+          <LocalizationButton />
         </form>
         <SearchModal
           modalIsOpen={modalIsOpen}
@@ -59,7 +56,7 @@ const SideBar = () => {
           </div>
           <p className="description">{data.weather[0].description}</p>
           <p className="date">
-            Today <span>•</span> Fri, 5 Jun
+            Today <span>•</span> {weekDay}, {today} {month}
           </p>
           <p className="place">
             <MdPlace />

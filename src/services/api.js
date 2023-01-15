@@ -20,13 +20,10 @@ function requestURL(lat, lon) {
   const latitude = lat || defaultLocation.lat
   const longitude = lon || defaultLocation.lon
 
-  console.log(`REQUESTURL => lat: ${latitude} lon: ${longitude}`)
-
   return `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
 }
 
 export function SEARCH_CIT_GET(latitude, longitude) {
-  console.log(requestURL(latitude, longitude))
   return {
     url: requestURL(latitude, longitude),
     options: {
@@ -36,7 +33,6 @@ export function SEARCH_CIT_GET(latitude, longitude) {
 }
 
 export function SEARCH_BY_LOCATION_GET(latitude, longitude) {
-  console.log(requestURL(latitude, longitude))
   return {
     url: requestURL(latitude, longitude),
     options: {
