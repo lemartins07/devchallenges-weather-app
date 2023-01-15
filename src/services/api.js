@@ -1,16 +1,44 @@
 // export const API_URL = 'https://www.metaweather.com/api'
-const API_KEY = '87b2487435c1c3f65c0b8cc14ad2a3e9'
-// const API_KEY = '43d2d1023ae5c6c8a741593c7261b46f'
-const portoAlegre = {
-  lat: '-30.033056',
-  lon: '-51.230000',
-}
-// https://api.openweathermap.org/data/2.5/weather?lat=-30.033056&lon=-51.230000&appid=43d2d1023ae5c6c8a741593c7261b46f&units=metric
-const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${portoAlegre.lat}&lon=${portoAlegre.lon}&appid=${API_KEY}&units=metric`
+// const API_KEY = '87b2487435c1c3f65c0b8cc14ad2a3e9'
+const API_KEY = '43d2d1023ae5c6c8a741593c7261b46f'
 
-export function SEARCH_CIT_GET() {
+const defaultLocation = {
+  lat: '-23.5475',
+  lon: '-46.6361',
+}
+
+// PORTO ALEGRE
+// https://api.openweathermap.org/data/2.5/weather?lat=-30.033056&lon=-51.230000&appid=43d2d1023ae5c6c8a741593c7261b46f&units=metric
+
+// URL DE PRODUÇÃO
+// `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+
+// URL DE TESTE - FAKEAPI
+// http://localhost:3001/cities?coord.lon=-51.2304&coord.lat=-30.0325
+
+function requestURL(lat, lon) {
+  const latitude = lat || defaultLocation.lat
+  const longitude = lon || defaultLocation.lon
+
+  console.log(`REQUESTURL => lat: ${latitude} lon: ${longitude}`)
+
+  return `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+}
+
+export function SEARCH_CIT_GET(latitude, longitude) {
+  console.log(requestURL(latitude, longitude))
   return {
-    url: `${API_URL}`,
+    url: requestURL(latitude, longitude),
+    options: {
+      method: 'GET',
+    },
+  }
+}
+
+export function SEARCH_BY_LOCATION_GET(latitude, longitude) {
+  console.log(requestURL(latitude, longitude))
+  return {
+    url: requestURL(latitude, longitude),
     options: {
       method: 'GET',
     },

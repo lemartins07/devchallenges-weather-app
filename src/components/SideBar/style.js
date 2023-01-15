@@ -6,6 +6,7 @@ export const Aside = styled.aside`
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
+  align-content: start;
 
   grid-row: 1/ 3;
 
@@ -60,6 +61,7 @@ export const WheaterData = styled.div`
     line-height: 2.625rem;
     color: #a09fb1;
     margin-bottom: 4rem;
+    text-transform: capitalize;
   }
 
   .date {
@@ -74,6 +76,7 @@ export const WheaterData = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 0.5rem;
     font-weight: 600;
     font-size: 1.125rem;
     line-height: 1.3125rem;

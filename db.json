@@ -1,0 +1,92 @@
+{
+  "cities": 
+  [
+    {
+      "coord": {
+        "lon": -51.2229376,
+        "lat": -30.0613632
+      },
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 25.6,
+        "feels_like": 26.2,
+        "temp_min": 24.99,
+        "temp_max": 26.82,
+        "pressure": 1014,
+        "humidity": 76
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 7.72,
+        "deg": 120
+      },
+      "clouds": {
+        "all": 75
+      },
+      "dt": 1673807921,
+      "sys": {
+        "type": 2,
+        "id": 2021802,
+        "country": "BR",
+        "sunrise": 1673771885,
+        "sunset": 1673821797
+      },
+      "timezone": -10800,
+      "id": 3452925,
+      "name": "Porto Alegre",
+      "cod": 200
+  },
+  {
+    "coord": {
+      "lon": -46.6361,
+      "lat": -23.5475
+    },
+    "weather": [
+      {
+        "id": 800,
+        "main": "Clear",
+        "description": "clear sky",
+        "icon": "01d"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 30.56,
+      "feels_like": 31.91,
+      "temp_min": 30.2,
+      "temp_max": 31.94,
+      "pressure": 1015,
+      "humidity": 50
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 4.12,
+      "deg": 280
+    },
+    "clouds": {
+      "all": 0
+    },
+    "dt": 1673809085,
+    "sys": {
+      "type": 1,
+      "id": 8394,
+      "country": "BR",
+      "sunrise": 1673771571,
+      "sunset": 1673819905
+    },
+    "timezone": -10800,
+    "id": 3448439,
+    "name": "São Paulo",
+    "cod": 200
+  }
+
+]
+}

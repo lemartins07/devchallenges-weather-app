@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import LightCloud from '../../assets/LightCloud.png'
 import Footer from '../Footer/index'
+import { GlobalContext } from '../../context/GlobalContext'
 
 import {
   MainComponent,
@@ -10,6 +11,9 @@ import {
 } from './style'
 
 const Main = () => {
+  // eslint-disable-next-line no-unused-vars
+  const data = useContext(GlobalContext)
+
   return (
     <>
       <MainComponent>

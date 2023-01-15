@@ -3,8 +3,8 @@ import { useState, useCallback } from 'react'
 
 const useFetch = () => {
   const [data, setData] = useState(null)
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(null)
+  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const request = useCallback(async (url, options) => {
     let response

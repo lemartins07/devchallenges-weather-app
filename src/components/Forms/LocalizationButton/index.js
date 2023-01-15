@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
 import { MdMyLocation } from 'react-icons/md'
 
 import { Button } from './style'
+import { GlobalContext } from '../../../context/GlobalContext'
 
-const LocalizationButton = ({ handleClick }) => {
+const LocalizationButton = () => {
+  const { getWetherByUserLocation } = useContext(GlobalContext)
+
+  function handleClick(event) {
+    event.preventDefault()
+    getWetherByUserLocation()
+  }
+
   return (
     <Button onClick={handleClick}>
       <MdMyLocation />
