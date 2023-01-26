@@ -3,7 +3,7 @@ import getImageToShow from '../../utils/getImageToShow'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const ImgWheater = ({ data }) => {
+const ImgWheater = ({ data, loading }) => {
   let imgPath = '/img/Clear.png'
 
   if (data) {
@@ -11,7 +11,13 @@ const ImgWheater = ({ data }) => {
     imgPath = `/img/${getImageToShow(icon)}`
   }
 
-  return !data ? <Skeleton /> : <img src={imgPath} alt="weather icon" />
+  return loading ? (
+    <p style={{ width: '66px', heigth: '62px' }}>
+      <Skeleton />
+    </p>
+  ) : (
+    <img src={imgPath} alt="weather icon" />
+  )
 }
 
 export default ImgWheater

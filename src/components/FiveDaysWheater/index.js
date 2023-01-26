@@ -1,10 +1,15 @@
 import React from 'react'
 import ImgWheater from '../ImgWheater'
+// eslint-disable-next-line no-unused-vars
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import { Box, Container } from './style'
 
-const FiveDaysWheater = ({ fiveDayData }) => {
-  let newArrayDates = []
+const FiveDaysWheater = ({ fiveDayData, loading }) => {
+  let newArrayDates = new Array(5)
+
+  console.log(newArrayDates, loading)
 
   if (fiveDayData) {
     newArrayDates = fiveDayData.list.filter((item, i, array) => {
@@ -20,14 +25,30 @@ const FiveDaysWheater = ({ fiveDayData }) => {
     })
   }
 
-  // console.log(newArrayDates)
+  return loading ? (
+    <Container>
+      {newArrayDates.map((item, index) => (
+        <Box key={index}>
+          <p>Tomorrow</p>
 
-  return (
+          <ImgWheater data={item} loading={loading} />
+
+          <div>
+            <p className="max">
+              {loading ? <Skeleton /> : `${item.main.temp_max.toFixed(0)} ºC`}
+            </p>
+            <p className="min">{item.main.temp_min.toFixed(0)}ºC</p>
+          </div>
+        </Box>
+      ))}
+    </Container>
+  ) : (
     <Container>
       {newArrayDates.map((item) => (
         <Box key={item.dt}>
           <p>Tomorrow</p>
-          <ImgWheater data={item} />
+
+          <ImgWheater data={item} loading={loading} />
           <div>
             <p className="max">{item.main.temp_max.toFixed(0)}ºC</p>
             <p className="min">{item.main.temp_min.toFixed(0)}ºC</p>
