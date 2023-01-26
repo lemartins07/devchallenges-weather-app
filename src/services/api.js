@@ -13,14 +13,20 @@ const defaultLocation = {
 // URL DE PRODUÇÃO
 // `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
 
+// api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+
 // URL DE TESTE - FAKEAPI
 // http://localhost:3001/cities?coord.lon=-51.2304&coord.lat=-30.0325
 
-function requestURL(lat, lon) {
+function requestURL(lat, lon, fiveDays) {
   const latitude = lat || defaultLocation.lat
   const longitude = lon || defaultLocation.lon
 
-  return `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+  if (fiveDays) {
+    return `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+  } else {
+    return `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+  }
 }
 
 export function SEARCH_CIT_GET(latitude, longitude) {
@@ -35,6 +41,15 @@ export function SEARCH_CIT_GET(latitude, longitude) {
 export function SEARCH_BY_LOCATION_GET(latitude, longitude) {
   return {
     url: requestURL(latitude, longitude),
+    options: {
+      method: 'GET',
+    },
+  }
+}
+
+export function FIVE_DAYS_GET(latitude, longitude) {
+  return {
+    url: requestURL(latitude, longitude, true),
     options: {
       method: 'GET',
     },

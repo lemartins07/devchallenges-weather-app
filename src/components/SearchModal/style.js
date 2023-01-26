@@ -8,7 +8,7 @@ export const Modal = styled.div`
   z-index: 1000;
   padding: 2rem 3rem;
   transition: 0.2s;
-  transform: ${(props) => (props.modalIsOpen ? '' : 'translateX(-100%)')};
+  transform: ${(props) => (props.modalIsOpen ? '' : 'translateY(-100%)')};
   box-sizing: border-box;
 
   @media (max-width: 960px) {

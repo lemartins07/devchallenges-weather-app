@@ -4,13 +4,9 @@ export const MainComponent = styled.main`
   display: grid;
   align-items: start;
   row-gap: 4rem;
-  width: 70%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
-
-  /* & > * {
-    border: 1px solid red;
-  } */
 `
 export const TemperatureSelection = styled.div`
   text-align: right;
@@ -36,56 +32,6 @@ export const TemperatureSelection = styled.div`
     color: #110e3c;
   }
 `
-
-export const FiveDaysWheater = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  display: grid;
-  gap: 3rem;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-
-  .box {
-    flex: 0 1 120px;
-    background-color: #1e213a;
-    height: 177px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
-    p {
-      font-family: 'Raleway';
-      font-weight: 500;
-      font-size: 1rem;
-      line-height: 1.1875rem;
-
-      color: #e7e7eb;
-    }
-
-    img {
-      height: 62px;
-    }
-
-    div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-
-      .min {
-        font-family: 'Raleway';
-        font-weight: 500;
-        font-size: 1rem;
-        line-height: 1.1875rem;
-
-        color: #a09fb1;
-      }
-    }
-  }
-`
-
 export const Highlights = styled.section`
   margin-bottom: 2rem;
 

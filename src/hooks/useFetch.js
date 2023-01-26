@@ -22,7 +22,6 @@ const useFetch = () => {
       setError(err.message)
     } finally {
       setData(json)
-      console.log(json)
       setLoading(false)
       return { response, json }
     }
