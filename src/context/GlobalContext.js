@@ -13,8 +13,6 @@ export const GlobalStorage = ({ children }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  // console.log(dateHelper())
-
   const getWetherByUserLocation = () => {
     const successCallback = (position) => {
       const { latitude, longitude } = position.coords

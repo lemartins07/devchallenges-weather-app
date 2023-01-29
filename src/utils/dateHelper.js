@@ -1,7 +1,5 @@
 const dateHelper = (d) => {
   const date = d ? new Date(d) : new Date()
-  console.log('helper: ', d)
-
   function weekDay(date) {
     switch (date.getDay()) {
       case 1:
