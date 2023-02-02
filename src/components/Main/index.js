@@ -9,7 +9,7 @@ import { MainComponent, Highlights } from './style'
 import TemperatureSelection from '../Forms/TemperatureSelection'
 
 const Main = () => {
-  const { data, fiveDayData, loading } = useContext(GlobalContext)
+  const { data, fiveDayData, loading, scale } = useContext(GlobalContext)
   const [activeBtn, setActiveBtn] = useState('c')
 
   if (data)
@@ -32,7 +32,11 @@ const Main = () => {
               ºF
             </TemperatureSelection>
           </div>
-          <FiveDaysWheater fiveDayData={fiveDayData} loading={loading} />
+          <FiveDaysWheater
+            fiveDayData={fiveDayData}
+            loading={loading}
+            scale={scale}
+          />
           <Highlights>
             <h1>Today’s Hightlights </h1>
             <div className="box">

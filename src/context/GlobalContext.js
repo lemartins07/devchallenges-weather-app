@@ -1,6 +1,5 @@
 /* eslint-disable no-unsafe-finally */
 import { createContext, useEffect, useState } from 'react'
-// import useFetch from '../hooks/useFetch'
 import { SEARCH_CIT_GET, FIVE_DAYS_GET } from '../services/api'
 import dateHelper from '../utils/dateHelper'
 
@@ -37,22 +36,36 @@ export const GlobalStorage = ({ children }) => {
     setFiveDayData(filteredData)
   }
 
-  function convertTemperature(id) {
-    if (data && id === 'f' && scale === 'c') {
-      // data.main.temp = (data.main.temp * 9) / 5 + 32
+  function convertTemperature(newScale) {
+    setScale(newScale)
 
-      setData(function (data) {
+    if (data && fiveDayData && newScale === 'f' && scale === 'c') {
+      // data.main.temp = (data.main.temp * 9) / 5 + 32
+      // CELCIUS TO FAHRENHEIT
+      setData(function (prevData) {
         return {
-          ...data,
+          ...prevData,
           main: {
-            ...data.main,
-            temp: (data.main.temp * 9) / 5 + 32,
+            ...prevData.main,
+            temp: (prevData.main.temp * 9) / 5 + 32,
           },
         }
       })
-      console.log(data)
-      setScale('f')
-    } else if (data && id === 'c' && scale === 'f') {
+      // CELCIUS TO FAHRENHEIT
+      const updatedFiveDayData = fiveDayData.map((prevState) => {
+        return {
+          ...prevState,
+          main: {
+            ...prevState.main,
+            temp_min: (prevState.main.temp_min * 9) / 5 + 32,
+            temp_max: (prevState.main.temp_max * 9) / 5 + 32,
+          },
+        }
+      })
+
+      setFiveDayData(updatedFiveDayData)
+    } else if (data && newScale === 'c' && scale === 'f') {
+      // FAHRENHEIT TO CELCIUS
       setData(function (data) {
         return {
           ...data,
@@ -62,7 +75,20 @@ export const GlobalStorage = ({ children }) => {
           },
         }
       })
-      setScale('c')
+
+      // FAHRENHEIT TO CELCIUS
+      const updatedFiveDayData = fiveDayData.map((prevState) => {
+        return {
+          ...prevState,
+          main: {
+            ...prevState.main,
+            temp_min: ((prevState.main.temp_min - 32) * 5) / 9,
+            temp_max: ((prevState.main.temp_max - 32) * 5) / 9,
+          },
+        }
+      })
+
+      setFiveDayData(updatedFiveDayData)
     }
   }
 

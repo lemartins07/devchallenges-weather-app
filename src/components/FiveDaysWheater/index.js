@@ -7,7 +7,7 @@ import dateHelper from '../../utils/dateHelper'
 
 import { Box, Container } from './style'
 
-const FiveDaysWheater = ({ fiveDayData, loading }) => {
+const FiveDaysWheater = ({ fiveDayData, loading, scale }) => {
   function formatDate(d) {
     const { month, weekDay, day } = dateHelper(d)
     return <p>{`${weekDay}, ${day} ${month}`} </p>
@@ -38,8 +38,14 @@ const FiveDaysWheater = ({ fiveDayData, loading }) => {
 
           <ImgWheater data={item} loading={loading} />
           <div>
-            <p className="max">{item.main.temp_max.toFixed(0)}ºC</p>
-            <p className="min">{item.main.temp_min.toFixed(0)}ºC</p>
+            <p className="max">
+              {item.main.temp_max.toFixed(0)}
+              {scale === 'c' ? 'ºC' : 'ºF'}
+            </p>
+            <p className="min">
+              {item.main.temp_min.toFixed(0)}
+              {scale === 'c' ? 'ºC' : 'ºF'}
+            </p>
           </div>
         </Box>
       ))}
