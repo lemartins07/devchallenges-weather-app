@@ -14,7 +14,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 const SideBar = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  const { data, error, dateHelper, scale } = useContext(GlobalContext)
+  const { data, error, dateHelper, scale, loading } = useContext(GlobalContext)
   const { today, weekDay, month } = dateHelper()
 
   if (error)
@@ -23,6 +23,7 @@ const SideBar = () => {
         <p>{error}</p>
       </Aside>
     )
+
   return (
     <Aside>
       <form>
@@ -38,18 +39,18 @@ const SideBar = () => {
           <ImgWheater data={data} />
         </div>
         <div className="temperature">
-          {!data ? <Skeleton /> : data.main.temp.toFixed(0)}
+          {loading ? <Skeleton /> : data.main.temp.toFixed(0)}
           <span>º{scale === 'c' ? 'C' : 'F'}</span>
         </div>
         <p className="description">
-          {!data ? <Skeleton /> : data.weather[0].description}
+          {loading ? <Skeleton /> : data.weather[0].description}
         </p>
         <p className="date">
           Today <span>•</span> {weekDay}, {today} {month}
         </p>
         <p className="place">
           <MdPlace />
-          {!data ? <Skeleton /> : data.name}
+          {loading ? <Skeleton /> : data.name}
         </p>
       </WheaterData>
     </Aside>

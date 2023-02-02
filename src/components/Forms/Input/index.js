@@ -17,6 +17,7 @@ const Input = ({ type, label, name, value, onChange, error, onBlur, icon }) => {
         onChange={onChange}
         onBlur={onBlur}
         placeholder="search locations"
+        autoComplete="off"
       />
       {error && <p>{error}</p>}
     </Wrapper>

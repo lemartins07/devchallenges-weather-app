@@ -8,9 +8,11 @@ export const GlobalContext = createContext()
 export const GlobalStorage = ({ children }) => {
   const [fiveDayData, setFiveDayData] = useState(null)
   const [data, setData] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [scale, setScale] = useState('c')
+
+  console.log('data: ' + data, 'Loading: ' + loading)
 
   function getFiveDaysForecast(data) {
     const today = new Date().getDate()

@@ -1,23 +1,34 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import getImageToShow from '../../utils/getImageToShow'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { GlobalContext } from '../../context/GlobalContext'
 
-const ImgWheater = ({ data, loading }) => {
+const ImgWheater = ({ data }) => {
   let imgPath = '/img/Clear.png'
+  const [imgLoad, setImgLoad] = useState(true)
+  const { loading } = useContext(GlobalContext)
+
+  console.log('imgLoad: ' + imgLoad, 'Loading: ' + loading)
+
+  function handleLoad() {
+    setImgLoad(false)
+  }
+
+  if (imgLoad && loading) {
+    console.log('aqui')
+    return (
+      <p style={{ width: '100px', heigth: '100px' }}>
+        <Skeleton />
+      </p>
+    )
+  }
 
   if (data) {
     const icon = data.list ? data.list.weather[0].icon : data.weather[0].icon
     imgPath = `/img/${getImageToShow(icon)}`
+    return <img src={imgPath} alt="weather icon" onLoad={handleLoad} />
   }
-
-  return loading ? (
-    <p style={{ width: '66px', heigth: '62px' }}>
-      <Skeleton />
-    </p>
-  ) : (
-    <img src={imgPath} alt="weather icon" />
-  )
 }
 
 export default ImgWheater
