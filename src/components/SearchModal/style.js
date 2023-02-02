@@ -70,6 +70,8 @@ export const Modal = styled.div`
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
+      z-index: 2;
 
       p {
         display: block;

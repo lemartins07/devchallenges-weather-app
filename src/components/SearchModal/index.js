@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { MdClose, MdChevronRight } from 'react-icons/md'
 
 import { Modal } from './style'
 import Input from '../Forms/Input/index'
 import useFetch from '../../hooks/useFetch'
 import { SEARCH_CITY_GET } from '../../services/api'
+import { GlobalContext } from '../../context/GlobalContext'
 
 const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
   const [query, setQuery] = useState('')
-  const { data, loading, request } = useFetch()
+  const { data, loading, request, setData } = useFetch()
   const { url, options } = SEARCH_CITY_GET(query)
+  // eslint-disable-next-line no-unused-vars
+  const { getData } = useContext(GlobalContext)
+
+  const debouncedSearch = debounce(() => {
+    request(url, options)
+  }, 500)
 
   useEffect(() => {
     if (query !== '') debouncedSearch(query)
@@ -17,6 +24,8 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
 
   function handleClick() {
     setModalIsOpen(!modalIsOpen)
+    setData('')
+    setQuery('')
   }
 
   function handleSubmit(event) {
@@ -25,8 +34,14 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
     setQuery('')
   }
 
-  function handleResultClick(item) {
-    console.log(item)
+  function handleResultClick(e) {
+    const lat = e.currentTarget.querySelector("input[name='lat']").value
+    const lon = e.currentTarget.querySelector("input[name='lon']").value
+
+    getData(lat, lon)
+    setModalIsOpen(!modalIsOpen)
+    setQuery('')
+    setData('')
   }
 
   function debounce(fn, delay) {
@@ -36,11 +51,6 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
       timerId = setTimeout(() => fn(...args), delay)
     }
   }
-
-  const debouncedSearch = debounce(() => {
-    request(url, options)
-    console.log(data)
-  }, 500)
 
   return (
     <Modal modalIsOpen={modalIsOpen}>
@@ -67,7 +77,7 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
           data &&
           data.map((item) => (
             <>
-              <li key={item.name} onClick={(item) => handleResultClick(item)}>
+              <li key={item.lat} onClick={handleResultClick}>
                 <input type="hidden" name="lat" value={item.lat} />
                 <input type="hidden" name="lon" value={item.lon} />
                 <p>

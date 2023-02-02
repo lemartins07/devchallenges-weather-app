@@ -148,6 +148,7 @@ export const GlobalStorage = ({ children }) => {
         getWetherByUserLocation,
         dateHelper,
         convertTemperature,
+        getData,
       }}
     >
       {children}
