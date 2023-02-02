@@ -55,3 +55,12 @@ export function FIVE_DAYS_GET(latitude, longitude) {
     },
   }
 }
+
+export function SEARCH_CITY_GET(name) {
+  return {
+    url: `https://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=10&appid=${API_KEY}`,
+    options: {
+      method: 'GET',
+    },
+  }
+}

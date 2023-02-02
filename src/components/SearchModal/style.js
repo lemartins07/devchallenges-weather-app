@@ -61,13 +61,27 @@ export const Modal = styled.div`
 
     li {
       list-style: none;
-      padding: 1.5rem 1rem;
+      padding: 1rem 1rem;
       margin-bottom: 1rem;
+      /* align-items: center; */
+      border: 1px solid transparent;
+      min-height: 74px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: 1px solid transparent;
-      min-height: 74px;
+
+      p {
+        display: block;
+        margin: 0;
+      }
+
+      span {
+        font-size: 0.8rem;
+        color: #70746a;
+        display: block;
+        margin-top: 0.5rem;
+      }
     }
 
     li:hover {
