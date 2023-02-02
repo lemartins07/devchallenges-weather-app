@@ -7,31 +7,13 @@ export const MainComponent = styled.main`
   width: 80%;
   margin-left: auto;
   margin-right: auto;
-`
-export const TemperatureSelection = styled.div`
-  text-align: right;
-  padding: 2rem 0 1rem;
 
-  button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    border: none;
-    outline: none;
-    margin-left: 1rem;
-    background: #585676;
-
-    font-family: 'Raleway';
-    font-weight: 700;
-    font-size: 18px;
-    color: #e7e7eb;
-  }
-
-  button.active {
-    background: #e7e7eb;
-    color: #110e3c;
+  .temperatureSelection {
+    text-align: right;
+    padding: 2rem 0 1rem;
   }
 `
+
 export const Highlights = styled.section`
   margin-bottom: 2rem;
 

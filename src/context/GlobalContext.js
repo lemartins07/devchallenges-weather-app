@@ -7,49 +7,97 @@ import dateHelper from '../utils/dateHelper'
 export const GlobalContext = createContext()
 
 export const GlobalStorage = ({ children }) => {
-  // const { request, data, loading, error } = useFetch()
   const [fiveDayData, setFiveDayData] = useState(null)
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [scale, setScale] = useState('c')
+
+  function getFiveDaysForecast(data) {
+    const today = new Date().getDate()
+    const filteredData = data.list.filter((item, i, array) => {
+      let j, dt1, dt2
+      // condição para o index não ultrapassar o último
+      if (i < array.length - 1) {
+        // define o J para pegar o próximo item do array
+        j = i < array.length ? i + 1 : array.length - 1
+        // pega o dia do item atual
+        dt1 = new Date(item.dt_txt).getDate()
+        // pega o dia do proximo item
+        dt2 = new Date(array[j].dt_txt).getDate()
+      }
+
+      if (i === 39) {
+        return item
+      } else {
+        return dt1 !== dt2 && dt1 !== today
+      }
+    })
+
+    setFiveDayData(filteredData)
+  }
+
+  function convertTemperature(id) {
+    if (data && id === 'f' && scale === 'c') {
+      // data.main.temp = (data.main.temp * 9) / 5 + 32
+
+      setData(function (data) {
+        return {
+          ...data,
+          main: {
+            ...data.main,
+            temp: (data.main.temp * 9) / 5 + 32,
+          },
+        }
+      })
+      console.log(data)
+      setScale('f')
+    } else if (data && id === 'c' && scale === 'f') {
+      setData(function (data) {
+        return {
+          ...data,
+          main: {
+            ...data.main,
+            temp: ((data.main.temp - 32) * 5) / 9,
+          },
+        }
+      })
+      setScale('c')
+    }
+  }
+
+  async function getData(latitude, longitude) {
+    const { url, options } = SEARCH_CIT_GET(latitude, longitude)
+    const { url: url1, options: options1 } = FIVE_DAYS_GET(latitude, longitude)
+    let responses, json, json1
+    try {
+      setError(null)
+      setLoading(true)
+      responses = await Promise.all([
+        fetch(url, options),
+        fetch(url1, options1),
+      ])
+
+      json = await responses[0].json()
+      json1 = await responses[1].json()
+
+      if (responses.ok === false) throw new Error(json.message)
+    } catch (err) {
+      json = null
+      setError(err.message)
+    } finally {
+      setData(json)
+      getFiveDaysForecast(json1)
+      setLoading(false)
+      return { responses, json }
+    }
+  }
 
   const getWetherByUserLocation = () => {
     const successCallback = (position) => {
       const { latitude, longitude } = position.coords
-
-      async function getDataByLocation(latitude, longitude) {
-        const { url, options } = SEARCH_CIT_GET(latitude, longitude)
-        const { url: url1, options: options1 } = FIVE_DAYS_GET(
-          latitude,
-          longitude,
-        )
-        let responses, json, json1
-
-        try {
-          setError(null)
-          setLoading(true)
-          responses = await Promise.all([
-            fetch(url, options),
-            fetch(url1, options1),
-          ])
-
-          json = await responses[0].json()
-          json1 = await responses[1].json()
-
-          if (responses.ok === false) throw new Error(json.message)
-        } catch (err) {
-          json = null
-
-          setError(err.message)
-        } finally {
-          setData(json)
-          setFiveDayData(json1)
-          setLoading(false)
-          return { responses, json }
-        }
-      }
-
-      getDataByLocation(latitude, longitude)
+      getData(latitude, longitude)
+      setScale('c')
     }
 
     const errorCallback = (error) => {
@@ -59,56 +107,7 @@ export const GlobalStorage = ({ children }) => {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
   }
 
-  async function getFiveDayForecast() {
-    const { url, options } = FIVE_DAYS_GET()
-    let response, json
-
-    try {
-      setError(null)
-      setLoading(true)
-      response = await fetch(url, options)
-      json = await response.json()
-
-      if (response.ok === false) throw new Error(json.message)
-    } catch (err) {
-      json = null
-      setError(err.message)
-    } finally {
-      setFiveDayData(json)
-      setLoading(false)
-      return { response, json }
-    }
-  }
-
   useEffect(() => {
-    const { url, options } = SEARCH_CIT_GET()
-    const { url: url1, options: options1 } = FIVE_DAYS_GET()
-    let responses, json, json1
-
-    async function getData() {
-      try {
-        setError(null)
-        setLoading(true)
-        responses = await Promise.all([
-          fetch(url, options),
-          fetch(url1, options1),
-        ])
-
-        json = await responses[0].json()
-        json1 = await responses[1].json()
-
-        if (responses.ok === false) throw new Error(json.message)
-      } catch (err) {
-        json = null
-        setError(err.message)
-      } finally {
-        setData(json)
-        setFiveDayData(json1)
-        setLoading(false)
-        return { responses, json }
-      }
-    }
-    // getFiveDayForecast()
     getData()
   }, [])
 
@@ -119,9 +118,10 @@ export const GlobalStorage = ({ children }) => {
         fiveDayData,
         loading,
         error,
+        scale,
         getWetherByUserLocation,
         dateHelper,
-        getFiveDayForecast,
+        convertTemperature,
       }}
     >
       {children}

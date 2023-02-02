@@ -1,23 +1,37 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Footer from '../Footer/index'
 import { GlobalContext } from '../../context/GlobalContext'
 import FiveDaysWheater from '../FiveDaysWheater'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import { MainComponent, Highlights, TemperatureSelection } from './style'
+import { MainComponent, Highlights } from './style'
+import TemperatureSelection from '../Forms/TemperatureSelection'
 
 const Main = () => {
   const { data, fiveDayData, loading } = useContext(GlobalContext)
+  const [activeBtn, setActiveBtn] = useState('c')
 
   if (data)
     return (
       <>
         <MainComponent>
-          <TemperatureSelection>
-            <button className="active">ºC</button>
-            <button>ºF</button>
-          </TemperatureSelection>
+          <div className="temperatureSelection">
+            <TemperatureSelection
+              id="c"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+            >
+              ºC
+            </TemperatureSelection>
+            <TemperatureSelection
+              id="f"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+            >
+              ºF
+            </TemperatureSelection>
+          </div>
           <FiveDaysWheater fiveDayData={fiveDayData} loading={loading} />
           <Highlights>
             <h1>Today’s Hightlights </h1>

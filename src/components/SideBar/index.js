@@ -14,8 +14,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 const SideBar = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  const { data, loading, error, dateHelper, fiveDayData } =
-    useContext(GlobalContext)
+  const { data, error, dateHelper, scale } = useContext(GlobalContext)
   const { today, weekDay, month } = dateHelper()
 
   if (error)
@@ -40,7 +39,7 @@ const SideBar = () => {
         </div>
         <div className="temperature">
           {!data ? <Skeleton /> : data.main.temp.toFixed(0)}
-          <span>ºC</span>
+          <span>º{scale === 'c' ? 'C' : 'F'}</span>
         </div>
         <p className="description">
           {!data ? <Skeleton /> : data.weather[0].description}
