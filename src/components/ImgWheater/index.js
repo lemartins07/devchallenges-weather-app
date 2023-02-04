@@ -9,14 +9,11 @@ const ImgWheater = ({ data }) => {
   const [imgLoad, setImgLoad] = useState(true)
   const { loading } = useContext(GlobalContext)
 
-  console.log('imgLoad: ' + imgLoad, 'Loading: ' + loading)
-
   function handleLoad() {
     setImgLoad(false)
   }
 
   if (imgLoad && loading) {
-    console.log('aqui')
     return (
       <p style={{ width: '100px', heigth: '100px' }}>
         <Skeleton />

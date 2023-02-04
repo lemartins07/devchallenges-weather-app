@@ -98,5 +98,12 @@ export const Modal = styled.div`
     li svg {
       display: none;
     }
+
+    .loader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 300px;
+    }
   }
 `

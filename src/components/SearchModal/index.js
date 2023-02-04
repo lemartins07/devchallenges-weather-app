@@ -6,6 +6,7 @@ import Input from '../Forms/Input/index'
 import useFetch from '../../hooks/useFetch'
 import { SEARCH_CITY_GET } from '../../services/api'
 import { GlobalContext } from '../../context/GlobalContext'
+import ReactLoading from 'react-loading'
 
 const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
   const [query, setQuery] = useState('')
@@ -72,7 +73,14 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
 
       <ul className="searchResults">
         {loading ? (
-          <p>Carregando</p>
+          <div className="loader">
+            <ReactLoading
+              type={'spin'}
+              color={'#e7e7eb'}
+              height={'50px'}
+              width={'50px'}
+            />
+          </div>
         ) : (
           data &&
           data.map((item) => (

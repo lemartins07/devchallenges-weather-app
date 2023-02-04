@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import Footer from '../Footer/index'
 import { GlobalContext } from '../../context/GlobalContext'
 import FiveDaysWheater from '../FiveDaysWheater'
@@ -9,8 +9,8 @@ import { MainComponent, Highlights } from './style'
 import TemperatureSelection from '../Forms/TemperatureSelection'
 
 const Main = () => {
-  const { data, fiveDayData, loading, scale } = useContext(GlobalContext)
-  const [activeBtn, setActiveBtn] = useState('c')
+  const { data, fiveDayData, loading, scale, activeBtn, setActiveBtn } =
+    useContext(GlobalContext)
 
   if (data)
     return (

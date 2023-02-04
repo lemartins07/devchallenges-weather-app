@@ -2,6 +2,7 @@
 import { createContext, useEffect, useState } from 'react'
 import { SEARCH_CIT_GET, FIVE_DAYS_GET } from '../services/api'
 import dateHelper from '../utils/dateHelper'
+import moment from 'moment'
 
 export const GlobalContext = createContext()
 
@@ -11,27 +12,23 @@ export const GlobalStorage = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [scale, setScale] = useState('c')
-
-  console.log('data: ' + data, 'Loading: ' + loading)
+  const [activeBtn, setActiveBtn] = useState('c')
 
   function getFiveDaysForecast(data) {
-    const today = new Date().getDate()
-    const filteredData = data.list.filter((item, i, array) => {
-      let j, dt1, dt2
-      // condição para o index não ultrapassar o último
-      if (i < array.length - 1) {
-        // define o J para pegar o próximo item do array
-        j = i < array.length ? i + 1 : array.length - 1
-        // pega o dia do item atual
-        dt1 = new Date(item.dt_txt).getDate()
-        // pega o dia do proximo item
-        dt2 = new Date(array[j].dt_txt).getDate()
-      }
+    const today = moment().format('YYYY-MM-DD')
+    const addedDates = []
+    const filteredData = data.list.filter((item) => {
+      const date = moment(item.dt_txt).format('YYYY-MM-DD')
 
-      if (i === 39) {
-        return item
+      if (
+        addedDates.includes(date) ||
+        date === today ||
+        addedDates.length >= 5
+      ) {
+        return false
       } else {
-        return dt1 !== dt2 && dt1 !== today
+        addedDates.push(date)
+        return true
       }
     })
 
@@ -126,6 +123,7 @@ export const GlobalStorage = ({ children }) => {
       const { latitude, longitude } = position.coords
       getData(latitude, longitude)
       setScale('c')
+      setActiveBtn('c')
     }
 
     const errorCallback = (error) => {
@@ -147,10 +145,12 @@ export const GlobalStorage = ({ children }) => {
         loading,
         error,
         scale,
+        activeBtn,
         getWetherByUserLocation,
         dateHelper,
         convertTemperature,
         getData,
+        setActiveBtn,
       }}
     >
       {children}
