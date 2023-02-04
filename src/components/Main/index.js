@@ -5,16 +5,16 @@ import FiveDaysWheater from '../FiveDaysWheater'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import { MainComponent, Highlights } from './style'
+import { MainComponent, Highlights, WindArrowBox } from './style'
 import TemperatureSelection from '../Forms/TemperatureSelection'
 import SliderBar from '../SliderBar/index'
+import { FaLocationArrow } from 'react-icons/fa'
 
 const Main = () => {
   const { data, fiveDayData, loading, scale, activeBtn, setActiveBtn } =
     useContext(GlobalContext)
 
   if (data) {
-    console.log(data)
     return (
       <>
         <MainComponent>
@@ -54,6 +54,9 @@ const Main = () => {
                     </>
                   )}
                 </p>
+                <WindArrowBox windSpeed={data.wind.speed}>
+                  <FaLocationArrow />
+                </WindArrowBox>
               </div>
               <div className="Humidity">
                 <h3>Humidity</h3>

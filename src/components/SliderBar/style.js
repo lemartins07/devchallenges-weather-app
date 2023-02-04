@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Slider = styled.div`
   max-width: 300px;
   margin: 0 auto;
+  margin-top: 0.8rem;
 
   .numbersDisplay {
     display: flex;
@@ -22,7 +23,6 @@ export const Slider = styled.div`
     max-width: 300px;
     height: 8px;
     border-radius: 4px;
-
     background-color: #e7e7eb;
 
     span {

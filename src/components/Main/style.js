@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const MainComponent = styled.main`
   display: grid;
   align-items: start;
-  row-gap: 4rem;
+  row-gap: 2rem;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -34,13 +34,12 @@ export const Highlights = styled.section`
     @media (min-width: 40rem) {
       grid-template-columns: repeat(2, 1fr);
     }
-
-    /* border: 1px solid green; */
   }
+
   .box > div {
     background-color: #1e213a;
     /* max-width: 330px; */
-    max-height: 204px;
+    max-height: 230px;
     /* min-height: 159px; */
     text-align: center;
     padding: 1.5rem;
@@ -58,6 +57,7 @@ export const Highlights = styled.section`
       font-style: normal;
       font-weight: 700;
       font-size: 4rem;
+      line-height: 3.5rem;
       color: #e7e7eb;
       margin: 0;
 
@@ -66,5 +66,27 @@ export const Highlights = styled.section`
         font-weight: 500;
       }
     }
+  }
+
+  .windStatus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`
+
+export const WindArrowBox = styled.div`
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: #616375;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+
+  svg {
+    transform: rotate(${(props) => props.windSpeed + 'deg'});
   }
 `

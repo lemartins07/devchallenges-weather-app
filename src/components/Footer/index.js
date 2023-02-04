@@ -7,10 +7,22 @@ const Footer = () => {
     <FooterComponent>
       <p>
         created by{' '}
-        <a className="user" href="#">
+        <a
+          className="user"
+          href="http://github.com/lemartins07"
+          target={'_blank'}
+          rel="noreferrer"
+        >
           lemartins07
         </a>{' '}
-        - <a href="#">devChallenges.io</a>
+        -{' '}
+        <a
+          href="https://devchallenges.io/portfolio/lemartins07"
+          target={'_blank'}
+          rel="noreferrer"
+        >
+          devChallenges.io
+        </a>
       </p>
     </FooterComponent>
   )
