@@ -7,12 +7,14 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 import { MainComponent, Highlights } from './style'
 import TemperatureSelection from '../Forms/TemperatureSelection'
+import SliderBar from '../SliderBar/index'
 
 const Main = () => {
   const { data, fiveDayData, loading, scale, activeBtn, setActiveBtn } =
     useContext(GlobalContext)
 
-  if (data)
+  if (data) {
+    console.log(data)
     return (
       <>
         <MainComponent>
@@ -65,6 +67,7 @@ const Main = () => {
                     </>
                   )}
                 </p>
+                <SliderBar humidity={data.main.humidity} />
               </div>
               <div className="Visibility">
                 <h3>Visibily</h3>
@@ -97,6 +100,7 @@ const Main = () => {
         <Footer />
       </>
     )
+  }
 }
 
 export default Main

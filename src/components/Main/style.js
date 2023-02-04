@@ -36,33 +36,34 @@ export const Highlights = styled.section`
     }
 
     /* border: 1px solid green; */
+  }
+  .box > div {
+    background-color: #1e213a;
+    /* max-width: 330px; */
+    max-height: 204px;
+    /* min-height: 159px; */
+    text-align: center;
+    padding: 1.5rem;
 
-    div {
-      background-color: #1e213a;
-      /* max-width: 330px; */
-      height: min(159px, 204px);
-      text-align: center;
+    h3 {
+      font-family: 'Raleway';
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.1875rem;
+      color: #e7e7eb;
+    }
 
-      h3 {
-        font-family: 'Raleway';
+    p {
+      font-family: 'Raleway';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 4rem;
+      color: #e7e7eb;
+      margin: 0;
+
+      span {
+        font-size: 2.25rem;
         font-weight: 500;
-        font-size: 1rem;
-        line-height: 1.1875rem;
-        color: #e7e7eb;
-      }
-
-      p {
-        font-family: 'Raleway';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 4rem;
-        color: #e7e7eb;
-        margin: 0;
-
-        span {
-          font-size: 2.25rem;
-          font-weight: 500;
-        }
       }
     }
   }
