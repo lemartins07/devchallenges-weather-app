@@ -26,25 +26,16 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
-  - [Built With](#built-with)
+- [Overview](#overview)  
 - [Features](#features)
 - [How to use](#how-to-use)
 - [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
 
 <!-- OVERVIEW -->
 
 ## Overview
 
-![screenshot]()
-
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
-
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :)
+![screenshot](https://github.com/lemartins07/devchallenges-weather-app/blob/0a3dbcd2d3fc5b937c8c01ff11510a4ff61918a6/src/assets/wheater-app.png?raw=true)
 
 ### Built With
 
@@ -91,5 +82,6 @@ $ npm start
 
 ## Contact
 
-- GitHub [@your-username](https://{github.com/lemartins07})
-- Twitter [@your-twitter](https://{twitter.com/lemartins07})
+- GitHub [@lemartins07](https://{github.com/lemartins07})
+- Twitter [@lemartins07](https://{twitter.com/lemartins07})
+- Linkedin [Leandro Martins](https://{https://www.linkedin.com/in/lemartins07/})
